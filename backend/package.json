@@ -1,7 +1,7 @@
 {
-  "name": "bajaj",
+  "name": "bajaj-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Support Ticket System - Express/MongoDB Backend",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",

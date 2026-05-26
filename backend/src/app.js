@@ -7,8 +7,23 @@ const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
-// Enable CORS
-app.use(cors());
+// Enable CORS — allow requests from CLIENT_URL in production, all origins in development
+const allowedOrigin = process.env.CLIENT_URL || 'http://localhost:5173';
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (e.g. mobile apps, curl, Postman)
+      if (!origin) return callback(null, true);
+      if (origin === allowedOrigin || process.env.NODE_ENV !== 'production') {
+        return callback(null, true);
+      }
+      return callback(new Error(`CORS policy: Origin ${origin} is not allowed`));
+    },
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+  })
+);
 
 // Body parser
 app.use(express.json());

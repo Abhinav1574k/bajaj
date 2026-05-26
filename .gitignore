@@ -1,0 +1,25 @@
+# Root-level .gitignore for monorepo
+
+# =======================
+# Backend
+# =======================
+backend/node_modules/
+backend/.env
+backend/dist/
+
+# =======================
+# Frontend
+# =======================
+frontend/node_modules/
+frontend/.env
+frontend/dist/
+frontend/.env.local
+
+# =======================
+# OS & Editor
+# =======================
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
