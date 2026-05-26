@@ -247,14 +247,19 @@ function App() {
       return 'Just now';
     }
     if (diffMin < 60) {
-      return `${Math.round(diffMin)}m ago`;
+      return `${Math.round(diffMin)}m`;
     }
-    const diffHours = diffMin / 60;
+    
+    const diffHours = Math.floor(diffMin / 60);
+    const remainingMins = Math.round(diffMin % 60);
+    
     if (diffHours < 24) {
-      return `${diffHours.toFixed(1)}h ago`;
+      return `${diffHours}h ${remainingMins}m`;
     }
-    const diffDays = diffHours / 24;
-    return `${diffDays.toFixed(1)}d ago`;
+    
+    const diffDays = Math.floor(diffHours / 24);
+    const remainingHours = diffHours % 24;
+    return `${diffDays}d ${remainingHours}h`;
   };
 
   // Helper: Get SLA status limit text
